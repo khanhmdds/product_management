@@ -18,8 +18,8 @@ import java.util.List;
 
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
-private IAccountDAO iAccountDAO;
-private ICountryDAO iCountryDAO;
+private UserDAO userDAO;
+private AdminDAO adminDAO;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,10 +31,10 @@ private ICountryDAO iCountryDAO;
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String gmail = req.getParameter("email");
         String password = req.getParameter("password");
-        List<Account> accountList = iAccountDAO.selectAllAccount();
+        List<User> accountList = userDAO.selectAllUser();
         boolean flag = true;
-        for (Account account : accountList){
-            if (gmail.equals(account.getGmail()) && password.equals(account.getPassword())){
+        for (User account : accountList){
+            if (gmail.equals(account.getEmail()) && password.equals(account.getPassword())){
                 resp.sendRedirect("/product");
                 flag = false;
                 break;
@@ -54,12 +54,12 @@ private ICountryDAO iCountryDAO;
 
     @Override
     public void init() throws ServletException {
-        iAccountDAO = new AccountDAO();
-        iCountryDAO = new CountryDAO();
-        List<Country> listCountry = iCountryDAO.selectAllCountry();
+        userDAO = new UserDAO();
+        adminDAO = new AdminDAO();
+        List<Admin> listAdmin = adminDAO.selectAllAdmin();
 
-        if (this.getServletContext().getAttribute("listCountry") == null) {
-            this.getServletContext().setAttribute("listCountry", listCountry);
+        if (this.getServletContext().getAttribute("listAdmin") == null) {
+            this.getServletContext().setAttribute("listAdmin", listAdmin);
         }
     }
 }

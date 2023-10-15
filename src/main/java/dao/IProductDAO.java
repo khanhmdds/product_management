@@ -17,4 +17,8 @@ public interface IProductDAO {
     public boolean deleteProduct(int id) throws SQLException;
 
     boolean updateProduct(Product product) throws SQLException;
+
+    public int getNoOfRecords();
+    public List<Product> selectAllProductsPaggingFilter(int offset, int noOfRecords, String q, int idCategory);
+
 }

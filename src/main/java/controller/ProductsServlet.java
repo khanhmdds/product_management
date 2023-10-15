@@ -1,11 +1,11 @@
-package com.controller;
+package controller;
 
-import com.AppUtils.ValidateUtils;
-import com.dao.*;
-import com.model.Account;
-import com.model.Category;
-import com.model.Country;
-import com.model.Product;
+import AppUtils.ValidateUtils;
+import dao.*;
+import model.Admin;
+import model.Category;
+import model.Admin;
+import model.Product;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -20,23 +20,23 @@ import java.util.List;
 
 @WebServlet(name = "ProductsServlet", urlPatterns = "/product")
 public class ProductsServlet extends HttpServlet {
-    private IAccountDAO iAccountDAO;
-    private ICountryDAO iCountryDAO;
+    private UserDAO userDAO;
+    private AdminDAO adminDAO;
     //    private ICategoryDAO categoryDAO;
-    private IProductsDAO productsDAO;
+    private ProductDAO productsDAO;
     private String errors = null;
 
     @Override
     public void init() throws ServletException {
-        iAccountDAO = new AccountDAO();
-        iCountryDAO = new CountryDAO();
+        userDAO = new UserDAO();
+        adminDAO = new AdminDAO();
         productsDAO = new ProductDAO();
         CategoryDAO categoryDAO = new CategoryDAO();
         List<Category> listCategory = categoryDAO.selectAllCategory();
-        List<Country> listCountry = iCountryDAO.selectAllCountry();
+        List<Admin> listAdmin = adminDAO.selectAllAdmin();
 
-        if (this.getServletContext().getAttribute("listCountry") == null) {
-            this.getServletContext().setAttribute("listCountry", listCountry);
+        if (this.getServletContext().getAttribute("listAdmin") == null) {
+            this.getServletContext().setAttribute("listAdmin", listAdmin);
         }
 
         if (this.getServletContext().getAttribute("listCategory") == null) {
@@ -85,7 +85,7 @@ public class ProductsServlet extends HttpServlet {
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         RequestDispatcher requestDispatcher;
-        Product product = productsDAO.selectProducts(id);
+        Product product = productsDAO.selectProduct(id);
         request.setAttribute("product", product);
         requestDispatcher = request.getRequestDispatcher("/WEB-INF/products/edit.jsp");
         requestDispatcher.forward(request, response);
@@ -93,7 +93,7 @@ public class ProductsServlet extends HttpServlet {
 
     private void showDeleteForm(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        productsDAO.deleteProducts(id);
+        productsDAO.deleteProduct(id);
 //        List<Product> listProduct = productsDAO.selectAllProducts();
 //        request.setAttribute("listProduct", listProduct);
 //        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/products/index.jsp");
@@ -141,7 +141,7 @@ public class ProductsServlet extends HttpServlet {
             String images = request.getParameter("image");
             if (!ValidateUtils.isImageValid(images))
                 errors.add("Wrong image path");
-            newProduct.setImages(images);
+            newProduct.setImage(images);
 
             int price = Integer.parseInt(request.getParameter("price"));
             if (price < 10000 || price > 100000000) errors.add("Price must between 10000 and 100000000");
@@ -156,14 +156,14 @@ public class ProductsServlet extends HttpServlet {
             if (errors.isEmpty()) {
                 Product products = new Product(title, images, price, quantity, description, idCategory);
                 products.setTitle(title);
-                products.setImages(images);
+                products.setImage(images);
                 products.setPrice(price);
                 products.setQuantity(quantity);
                 products.setDescription(description);
-                products.setIdcategory(idCategory);
+                products.setIdCategory(idCategory);
                 request.setAttribute("message", "Add new product" + " ' " + title + " ' " + images + " ' " + price + " ' " + quantity + " ' " + description + " ' " + idCategory + "success!");
                 request.setAttribute("product", newProduct);
-                productsDAO.insertProducts(products);
+                productsDAO.insertProduct(products);
             }
         }
         catch (NumberFormatException numberFormatException) {
@@ -182,7 +182,7 @@ public class ProductsServlet extends HttpServlet {
         int idCategory;
         List<String> errors = new ArrayList<>();
         int id = Integer.parseInt(request.getParameter("id"));
-        Product oldProduct = productsDAO.selectProducts(id);
+        Product oldProduct = productsDAO.selectProduct(id);
         try {
             title = request.getParameter("title");
             if (title.trim().equals("")) errors.add("Product name must not empty");
@@ -199,13 +199,13 @@ public class ProductsServlet extends HttpServlet {
             if (errors.isEmpty()) {
                 Product products = new Product(id, title, image, price, quantity, description, idCategory);
                 products.setTitle(title);
-                products.setImages(image);
+                products.setImage(image);
                 products.setPrice(price);
                 products.setQuantity(quantity);
                 products.setDescription(description);
-                products.setIdcategory(idCategory);
+                products.setIdCategory(idCategory);
                 request.setAttribute("message", "Update product" + " ' " + title + " ' " + image + " ' " + price + " ' " + quantity + " ' " + description + " ' " + "success");
-                productsDAO.updateProducts(products);
+                productsDAO.updateProduct(products);
             }
         }
         catch (NumberFormatException numberFormatException) {

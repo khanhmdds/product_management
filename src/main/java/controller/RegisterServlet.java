@@ -1,7 +1,8 @@
-package com.controller;
+package controller;
 
-import com.dao.AccountDAO;
-import com.model.Account;
+import dao.UserDAO;
+import model.Admin;
+import model.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @WebServlet(name = "RegisterServlet", urlPatterns = "/register")
 public class RegisterServlet extends HttpServlet {
-    private final AccountDAO accountDAO = new AccountDAO();
+    private final UserDAO userDAO = new UserDAO();
 
     private void createGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/register.jsp");
@@ -66,31 +67,31 @@ public class RegisterServlet extends HttpServlet {
     private void createPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher requestDispatcher;
         //List<Account> accounts = accountDAO.selectAllAccount();
-        String fullName = req.getParameter("fullName");
-        String gmail = req.getParameter("gmail");
+        String username = req.getParameter("username");
+        String email = req.getParameter("email");
         String pass = req.getParameter("password");
         String rePassword = req.getParameter("rePassword");
 
-        List<Account> accountList = accountDAO.selectAllAccount();
+        List<User> accountList = userDAO.selectAllUser();
 
-        for (Account account0 : accountList) {
-            if (fullName.isEmpty() || gmail.isEmpty() || pass.isEmpty()) {
+        for (User account0 : accountList) {
+            if (username.isEmpty() || email.isEmpty() || pass.isEmpty()) {
                 req.setAttribute("error", "Information cannot be empty");
                 requestDispatcher = req.getRequestDispatcher("/WEB-INF/account/register.jsp");
                 requestDispatcher.forward(req, resp);
                 break;
             }
-            else if (gmail.equals(account0.getGmail())) {
+            else if (email.equals(account0.getEmail())) {
                 req.setAttribute("error", "Email already exist!");
                 requestDispatcher = req.getRequestDispatcher("/WEB-INF/account/register.jsp");
                 requestDispatcher.forward(req, resp);
                 break;
             }
             else if (pass.equals(rePassword)) {
-                Account account = new Account(gmail, pass, fullName);
+                User account = new User(email, pass, username);
                 try {
                     // Thực hiện đăng ký tài khoản
-                    accountDAO.registerAccount(account);
+                    userDAO.registerUser(account);
                     req.setAttribute("account", account);
                     req.setAttribute("success", "Registration successful!");
                     requestDispatcher = req.getRequestDispatcher("/WEB-INF/account/register.jsp");

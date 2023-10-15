@@ -16,6 +16,7 @@ public class ProductDAO implements IProductDAO{
     private String jdbcURL = "jdbc:mysql://localhost:3306/product_management?useSSL=false";
     private String jdbcUsername = "root";
     private String jdbcPassword = "Bokhanh@271298";
+    private int noOfRecords;
 
     protected Connection getConnection() {
         Connection connection = null;
@@ -26,6 +27,67 @@ public class ProductDAO implements IProductDAO{
             e.printStackTrace();
         }
         return connection;
+    }
+
+    @Override
+    public List<Product> selectAllProductsPaggingFilter(int offset, int noOfRecords, String q, int idCategory) {
+        List<Product> listProduct = new ArrayList<>();
+        Product product = null;
+        PreparedStatement stmt = null;
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            if (idCategory != -1) {
+                String query = "select SQL_CALC_FOUND_ROWS * from product where title like ? and idCategory = ? limit ?, ?";
+                stmt = connection.prepareStatement(query);
+                stmt.setString(1, '%' + q + '%');
+                stmt.setInt(2, idCategory);
+                stmt.setInt(3, offset);
+                stmt.setInt(4,noOfRecords);
+            } else {
+                if (idCategory == -1) {
+                    String query = "select SQL_CALC_FOUND_ROWS * from products where title like ? limit ?, ?";
+                    stmt = connection.prepareStatement(query);
+                    stmt.setString(1, '%' + q + '%');
+                    stmt.setInt(2, offset);
+                    stmt.setInt(3, noOfRecords);
+                }
+            }
+            System.out.println(stmt);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                product = new Product();
+                product.setId(rs.getInt("id"));
+                product.setTitle(rs.getString("title"));
+                product.setImage(rs.getString("images"));
+                product.setQuantity(rs.getInt("quantity"));
+                product.setPrice(rs.getInt("price"));
+                product.setDescription(rs.getString("description"));
+                product.setIdCategory(rs.getInt("idCategory"));
+                listProduct.add(product);
+            }
+            rs = stmt.executeQuery("SELECT FOUND_ROWS()");
+            if (rs.next())
+                this.noOfRecords = rs.getInt(1);
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (stmt != null)
+                    stmt.close();
+                if (connection != null)
+                    connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return listProduct;
+    }
+
+    @Override
+    public int getNoOfRecords() {
+        return noOfRecords;
     }
 
     @Override
@@ -46,6 +108,8 @@ public class ProductDAO implements IProductDAO{
             printSQLException(e);
         }
     }
+
+
 
     @Override
     public Product selectProduct(int id) {

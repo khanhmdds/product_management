@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>Chuyển đến trang /login</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+<script>
+    // Sử dụng window.location.href để chuyển đến trang /login
+    window.location.href = "/login";
+</script>
 </body>
 </html>
