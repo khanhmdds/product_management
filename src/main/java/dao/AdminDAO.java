@@ -11,7 +11,7 @@ public class AdminDAO implements IAdminDAO{
     private static final String select_all_admin = "select * from admin";
     private String jdbcURL = "jdbc:mysql://localhost:3306/product_management?useSSL=false";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "Bokhanh@271298";
+    private String jdbcPassword = "beo01219230619";
 
     protected Connection getConnection() {
         Connection connection = null;

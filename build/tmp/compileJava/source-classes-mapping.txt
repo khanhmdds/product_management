@@ -1,9 +1,9 @@
-dao/ICategoryDAO.java
- dao.ICategoryDAO
 filter/UTF8Filter.java
  filter.UTF8Filter
-controller/ProductsServlet.java
- controller.ProductsServlet
+dao/ICategoryDAO.java
+ dao.ICategoryDAO
+controller/CategoryServlet.java
+ controller.CategoryServlet
 dao/IUserDAO.java
  dao.IUserDAO
 dao/AdminDAO.java
@@ -18,19 +18,21 @@ AppUtils/ValidateUtils.java
  AppUtils.ValidateUtils
 dao/IProductDAO.java
  dao.IProductDAO
-controller/LoginServlet.java
- controller.LoginServlet
 model/User.java
  model.User
+controller/LoginServlet.java
+ controller.LoginServlet
 model/Admin.java
  model.Admin
-dao/ProductDAO.java
- dao.ProductDAO
-model/Category.java
- model.Category
-model/Product.java
- model.Product
-com/module_case_study/HelloServlet.java
- com.module_case_study.HelloServlet
 dao/IAdminDAO.java
  dao.IAdminDAO
+model/Product.java
+ model.Product
+model/Category.java
+ model.Category
+com/module_case_study/HelloServlet.java
+ com.module_case_study.HelloServlet
+controller/ProductsServlet.java
+ controller.ProductsServlet
+dao/ProductDAO.java
+ dao.ProductDAO

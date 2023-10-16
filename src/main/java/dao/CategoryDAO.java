@@ -9,7 +9,7 @@ import java.util.List;
 public class CategoryDAO implements ICategoryDAO{
     private String jdbcURL = "jdbc:mysql://localhost:3306/product_management?useSSL=false";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "Bokhanh@271298";
+    private String jdbcPassword = "beo01219230619";
 
 
     private static final String INSERT_CATEGORY_SQL = "INSERT INTO category (name) VALUES (?)";
