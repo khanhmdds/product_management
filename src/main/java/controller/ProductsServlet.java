@@ -138,7 +138,7 @@ public class ProductsServlet extends HttpServlet {
             String title = request.getParameter("title");
             if (title.trim().equals("")) errors.add("Name is not empty");
             newProduct.setTitle(title);
-            String images = request.getParameter("image");
+            String images = request.getParameter("images");
             if (!ValidateUtils.isImageValid(images))
                 errors.add("Wrong image path");
             newProduct.setImage(images);
@@ -186,7 +186,7 @@ public class ProductsServlet extends HttpServlet {
         try {
             title = request.getParameter("title");
             if (title.trim().equals("")) errors.add("Product name must not empty");
-            image = request.getParameter("image");
+            image = request.getParameter("images");
             if (!ValidateUtils.isImageValid(image))
                 errors.add("The image path is incorrect");
             price = Integer.parseInt(request.getParameter("price"));

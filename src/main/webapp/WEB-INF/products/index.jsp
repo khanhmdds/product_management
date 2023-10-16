@@ -94,7 +94,7 @@
                     <c:forEach var="product" items="${requestScope.listProduct}">
                         <tr>
                             <td>
-                                <img src="${product.getImages()}" alt="Images product"
+                                <img src="${product.getImage()}" alt="Images product"
                                      style="width: 150px;height: 100px;"/>
                             </td>
                             <td>${product.getTitle()}</td>
@@ -105,7 +105,7 @@
                             <td>${product.getDescription()}</td>
                             <td>
                                 <c:forEach items="${applicationScope.listCategory}" var="category">
-                                    <c:if test="${category.getId()==product.getIdcategory()}">
+                                    <c:if test="${category.getId()==product.getIdCategory()}">
                                         ${category.getName()}
                                     </c:if>
                                 </c:forEach>

@@ -7,11 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAO implements IProductDAO{
-    private static final String INSERT_PRODUCTS_SQL = "INSERT INTO product (image, title, price, quantity, description , idCategory) VALUES " + " (?, ?, ?, ?,?,?);";
+    private static final String INSERT_PRODUCTS_SQL = "INSERT INTO product (image, title, price, quantity, description , idcategory) VALUES " + " (?, ?, ?, ?,?,?);";
     private static final String SELECT_ALL_PRODUCT = "SELECT * FROM product";
     private static final String SELECT_PRODUCT_BY_ID = "select * from product where id =?;";
-    private static final String UPDATE_PRODUCT = "update product set image=?, title =?, price=?, quantity =?, description =?, idCategory=? where id = ?;";
+    private static final String UPDATE_PRODUCT = "update product set image=?, title =?, price=?, quantity =?, description =?, idcategory=? where id = ?;";
     private static final String DELETE_PRODUCT = "delete from product where id = ?;";
+
+    private static final String SELECT_ALL_USER_PAGGING_FILLTER = "select SQL_CALC_FOUND_ROWS * from products where name like ? and id = ? limit ?, ?;";
+    private static final String SELECT_ALL_USER_PAGGING_FILLTER_ALL =  "select SQL_CALC_FOUND_ROWS * from products where title like ? limit ?, ?;";
+    private static final String SELECT_ALL_PRODUCT_SEARCH_FILTER_ALLCATEGORY =  "select SQL_CALC_FOUND_ROWS * from product where name like ? and idcategory = ? limit ?,?;";
+    private static final String SELECT_ALL_PRODUCT_SEARCH_FILTER = "select SQL_CALC_FOUND_ROWS * from product where name like ? limit ?,?;";
 
     private String jdbcURL = "jdbc:mysql://localhost:3306/product_management?useSSL=false";
     private String jdbcUsername = "root";
@@ -38,7 +43,7 @@ public class ProductDAO implements IProductDAO{
         try {
             connection = getConnection();
             if (idCategory != -1) {
-                String query = "select SQL_CALC_FOUND_ROWS * from product where title like ? and idCategory = ? limit ?, ?";
+                String query = "select SQL_CALC_FOUND_ROWS * from product where title like ? and idcategory = ? limit ?, ?";
                 stmt = connection.prepareStatement(query);
                 stmt.setString(1, '%' + q + '%');
                 stmt.setInt(2, idCategory);
@@ -46,7 +51,7 @@ public class ProductDAO implements IProductDAO{
                 stmt.setInt(4,noOfRecords);
             } else {
                 if (idCategory == -1) {
-                    String query = "select SQL_CALC_FOUND_ROWS * from products where title like ? limit ?, ?";
+                    String query = "select SQL_CALC_FOUND_ROWS * from product where title like ? limit ?, ?";
                     stmt = connection.prepareStatement(query);
                     stmt.setString(1, '%' + q + '%');
                     stmt.setInt(2, offset);
@@ -59,11 +64,11 @@ public class ProductDAO implements IProductDAO{
                 product = new Product();
                 product.setId(rs.getInt("id"));
                 product.setTitle(rs.getString("title"));
-                product.setImage(rs.getString("images"));
+                product.setImage(rs.getString("image"));
                 product.setQuantity(rs.getInt("quantity"));
                 product.setPrice(rs.getInt("price"));
                 product.setDescription(rs.getString("description"));
-                product.setIdCategory(rs.getInt("idCategory"));
+                product.setIdCategory(rs.getInt("idcategory"));
                 listProduct.add(product);
             }
             rs = stmt.executeQuery("SELECT FOUND_ROWS()");
@@ -126,7 +131,7 @@ public class ProductDAO implements IProductDAO{
                 int price = rs.getInt("price");
                 int quantity = rs.getInt("quantity");
                 String description = rs.getString("description");
-                int category = rs.getInt("idCategory");
+                int category = rs.getInt("idcategory");
                 Product products = new Product(idProduct ,title,image,price,quantity,description,category);
                 return products ;
             }
@@ -152,7 +157,7 @@ public class ProductDAO implements IProductDAO{
                 int price = rs.getInt("price");
                 int quantity = rs.getInt("quantity");
                 String description = rs.getString("description");
-                int idCategory = rs.getInt("idCategory");
+                int idCategory = rs.getInt("idcategory");
                 Product products = new Product(idProduct,title,image,price,quantity,description,idCategory);
                 productsList.add(products);
             }

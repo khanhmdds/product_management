@@ -82,7 +82,7 @@
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="image" name="image"
                                            placeholder="Nhập URL bạn muốn sửa"
-                                           value="${requestScope.product.getImages()}">
+                                           value="${requestScope.product.getImage()}">
                                     <label for="floatingInput">image:</label>
                                 </div>
                                 <div class="form-floating mb-3">
