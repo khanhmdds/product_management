@@ -65,17 +65,17 @@ public class CategoryServlet extends HttpServlet {
     private void listCategory(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
         List<Category> categoryList = categoryDAO.selectAllCategory();
         request.setAttribute("categoryList", categoryList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("category/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/category/index.jsp");
         dispatcher.forward(request, response);
     }
     private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-        RequestDispatcher dispatcher = request.getRequestDispatcher("category/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/category/create.jsp");
         dispatcher.forward(request, response);
     }
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         int id = Integer.parseInt(request.getParameter("id"));
         Category exitstingCategory = categoryDAO.selectCategory(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("category/edit.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/category/edit.jsp");
         request.setAttribute("category", exitstingCategory);
         dispatcher.forward(request, response);
     }
@@ -83,7 +83,7 @@ public class CategoryServlet extends HttpServlet {
         String name = request.getParameter("name");
         Category newCategory = new Category(name);
         categoryDAO.insertCategory(newCategory);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("category/create.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/category/create.jsp");
         dispatcher.forward(request, response);
     }
     private void updateCategory(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
@@ -91,7 +91,7 @@ public class CategoryServlet extends HttpServlet {
         String name = request.getParameter("name");
         Category category = new Category(id, name);
         categoryDAO.updateCategory(category);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("category/edit.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/category/edit.jsp");
         dispatcher.forward(request, response);
     }
     private void deleteCategory(HttpServletRequest request, HttpServletResponse response) throws SQLException, ServletException, IOException{
@@ -99,7 +99,7 @@ public class CategoryServlet extends HttpServlet {
         categoryDAO.deleteCategory(id);
         List<Category> categoryList = categoryDAO.selectAllCategory();
         request.setAttribute("categoryList", categoryList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("category/list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/category/index.jsp");
         dispatcher.forward(request, response);
     }
 }

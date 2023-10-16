@@ -19,7 +19,11 @@
     </div>
     <div class="navbar-nav w-100">
       <a style="color: whitesmoke !important" href="/product?action=list" class="nav-item nav-link active"><i
-              style="color: whitesmoke !important" class="fa fa-tachometer-alt me-2"></i>Home</a>
+              style="color: whitesmoke !important" class="fa fa-tachometer-alt me-2"></i>Product</a>
+    </div>
+    <div style="margin-top: 10px" class="navbar-nav w-100">
+      <a style="color: whitesmoke !important" href="/category?action=list" class="nav-item nav-link active"><i
+              style="color: whitesmoke !important" class="fa fa-tachometer-alt me-2"></i>Category</a>
     </div>
   </nav>
 </div>

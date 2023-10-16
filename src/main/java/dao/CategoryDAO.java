@@ -93,8 +93,8 @@ public class CategoryDAO implements ICategoryDAO{
 
         try (Connection connection = getConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_CATEGORY_SQL);) {
-            statement.setInt(1, category.getId());
-            statement.setString(2, category.getName());
+            statement.setString(1, category.getName());
+            statement.setInt(2, category.getId());
             rowUpdated = statement.executeUpdate() > 0;
         }
         return rowUpdated;
