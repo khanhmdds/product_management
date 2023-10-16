@@ -105,7 +105,7 @@
                             <td>${product.getDescription()}</td>
                             <td>
                                 <c:forEach items="${applicationScope.listCategory}" var="category">
-                                    <c:if test="${category.getId()==product.getIdCategory()}">
+                                    <c:if test="${category.getId()==product.getIdcategory()}">
                                         ${category.getName()}
                                     </c:if>
                                 </c:forEach>

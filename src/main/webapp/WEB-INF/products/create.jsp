@@ -70,16 +70,16 @@
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="title" name="title"
-                                           placeholder="nhap ten san pham...">
+                                           placeholder="Input product name ...">
                                     <label for="floatingInput">Title</label>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="image" name="image" placeholder="nhap url image...">
-                                    <label for="floatingInput">image:</label>
+                                    <label for="floatingInput">Image:</label>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input type="number" class="form-control" id="floatingInput" name="price"
-                                           placeholder="Nhập giá sản phẩm">
+                                           placeholder="Input price">
                                     <label for="floatingInput">Price</label>
                                 </div>
                                 <div class="form-floating mb-4">

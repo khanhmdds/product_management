@@ -68,7 +68,7 @@ public class ProductDAO implements IProductDAO{
                 product.setQuantity(rs.getInt("quantity"));
                 product.setPrice(rs.getInt("price"));
                 product.setDescription(rs.getString("description"));
-                product.setIdCategory(rs.getInt("idcategory"));
+                product.setIdcategory(rs.getInt("idcategory"));
                 listProduct.add(product);
             }
             rs = stmt.executeQuery("SELECT FOUND_ROWS()");
@@ -104,7 +104,7 @@ public class ProductDAO implements IProductDAO{
             preparedStatement.setInt(3, products.getPrice());
             preparedStatement.setInt(4, products.getQuantity());
             preparedStatement.setString(5, products.getDescription());
-            preparedStatement.setInt(6,products.getIdCategory());
+            preparedStatement.setInt(6,products.getIdcategory());
 
             System.out.println(this.getClass() + " insertProduct: " + preparedStatement);
 
@@ -198,7 +198,7 @@ public class ProductDAO implements IProductDAO{
             preparedStatement.setInt(3, product.getPrice());
             preparedStatement.setInt(4, product.getQuantity());
             preparedStatement.setString(5, product.getDescription());
-            preparedStatement.setInt(6,product.getIdCategory());
+            preparedStatement.setInt(6,product.getIdcategory());
             preparedStatement.setInt(7, product.getId());
             System.out.println(this.getClass() + " updateProduct " + preparedStatement);
             rowUpdated = preparedStatement.executeUpdate() > 0;

@@ -7,27 +7,27 @@ public class Product {
     protected int price;
     protected int quantity;
     protected String description;
-    protected int idCategory;
+    protected int idcategory;
 
     public Product(){}
 
-    public Product(int id, String title, String image, int price, int quantity, String description, int idCategory) {
+    public Product(int id, String title, String image, int price, int quantity, String description, int idcategory) {
         this.id = id;
         this.title = title;
         this.image = image;
         this.price = price;
         this.quantity = quantity;
         this.description = description;
-        this.idCategory = idCategory;
+        this.idcategory = idcategory;
     }
 
-    public Product(String title, String image, int price, int quantity, String description, int idCategory) {
+    public Product(String title, String image, int price, int quantity, String description, int idcategory) {
         this.title = title;
         this.image = image;
         this.price = price;
         this.quantity = quantity;
         this.description = description;
-        this.idCategory = idCategory;
+        this.idcategory = idcategory;
     }
 
     public int getId() {
@@ -78,11 +78,11 @@ public class Product {
         this.description = description;
     }
 
-    public int getIdCategory() {
-        return idCategory;
+    public int getIdcategory() {
+        return idcategory;
     }
 
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
+    public void setIdcategory(int idcategory) {
+        this.idcategory = idcategory;
     }
 }

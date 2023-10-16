@@ -138,7 +138,7 @@ public class ProductsServlet extends HttpServlet {
             String title = request.getParameter("title");
             if (title.trim().equals("")) errors.add("Name is not empty");
             newProduct.setTitle(title);
-            String images = request.getParameter("images");
+            String images = request.getParameter("image");
             if (!ValidateUtils.isImageValid(images))
                 errors.add("Wrong image path");
             newProduct.setImage(images);
@@ -160,7 +160,7 @@ public class ProductsServlet extends HttpServlet {
                 products.setPrice(price);
                 products.setQuantity(quantity);
                 products.setDescription(description);
-                products.setIdCategory(idCategory);
+                products.setIdcategory(idCategory);
                 request.setAttribute("message", "Add new product" + " ' " + title + " ' " + images + " ' " + price + " ' " + quantity + " ' " + description + " ' " + idCategory + "success!");
                 request.setAttribute("product", newProduct);
                 productsDAO.insertProduct(products);
@@ -186,7 +186,7 @@ public class ProductsServlet extends HttpServlet {
         try {
             title = request.getParameter("title");
             if (title.trim().equals("")) errors.add("Product name must not empty");
-            image = request.getParameter("images");
+            image = request.getParameter("image");
             if (!ValidateUtils.isImageValid(image))
                 errors.add("The image path is incorrect");
             price = Integer.parseInt(request.getParameter("price"));
@@ -203,7 +203,7 @@ public class ProductsServlet extends HttpServlet {
                 products.setPrice(price);
                 products.setQuantity(quantity);
                 products.setDescription(description);
-                products.setIdCategory(idCategory);
+                products.setIdcategory(idCategory);
                 request.setAttribute("message", "Update product" + " ' " + title + " ' " + image + " ' " + price + " ' " + quantity + " ' " + description + " ' " + "success");
                 productsDAO.updateProduct(products);
             }
