@@ -12,10 +12,11 @@ public class ProductDAO implements IProductDAO{
     private static final String SELECT_PRODUCT_BY_ID = "select * from product where id =?;";
     private static final String UPDATE_PRODUCT = "update product set image=?, title =?, price=?, quantity =?, description =?, idCategory=? where id = ?;";
     private static final String DELETE_PRODUCT = "delete from product where id = ?;";
+    private static final String SELECT_PRODUCT_BY_CATEGORY = "select * from product where idcategory = ?";
 
     private String jdbcURL = "jdbc:mysql://localhost:3306/product_management?useSSL=false";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "Bokhanh@271298";
+    private String jdbcPassword = "beo01219230619";
     private int noOfRecords;
 
     protected Connection getConnection() {
@@ -202,6 +203,28 @@ public class ProductDAO implements IProductDAO{
             printSQLException(ex);
         }
         return false;
+    }
+    public List<Product> selectProductByCategory(int cid){
+        List<Product> productList = new ArrayList<>();
+        try(Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PRODUCT_BY_CATEGORY);){
+            System.out.println(preparedStatement);
+            preparedStatement.setInt(1, cid);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String title = rs.getString("title");
+                String image = rs.getString("image");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                String description = rs.getString("description");
+                int idcategory = rs.getInt("idcategory");
+                productList.add(new Product(id, title, image, price, quantity, description, idcategory));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return productList;
     }
 
     public void printSQLException(SQLException ex) {

@@ -20,5 +20,5 @@ public interface IProductDAO {
 
     public int getNoOfRecords();
     public List<Product> selectAllProductsPaggingFilter(int offset, int noOfRecords, String q, int idCategory);
-
+    public List<Product> selectProductByCategory(int cid);
 }

@@ -19,7 +19,7 @@ public class UserDAO implements IUserDAO{
 
     private String jdbcURL = "jdbc:mysql://localhost:3306/product_management?useSSL=false";
     private String jdbcUsername = "root";
-    private String jdbcPassword = "Bokhanh@271298";
+    private String jdbcPassword = "beo01219230619";
 
     protected Connection getConnection() {
         Connection connection = null;
