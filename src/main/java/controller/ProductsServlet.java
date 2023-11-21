@@ -251,6 +251,5 @@ public class ProductsServlet extends HttpServlet {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/products/index.jsp");
         dispatcher.forward(req, resp);
     }
-
 }
 

@@ -12,6 +12,8 @@ public class ProductDAO implements IProductDAO{
     private static final String SELECT_PRODUCT_BY_ID = "select * from product where id =?;";
     private static final String UPDATE_PRODUCT = "update product set image=?, title =?, price=?, quantity =?, description =?, idcategory=? where id = ?;";
     private static final String DELETE_PRODUCT = "delete from product where id = ?;";
+    private static final String SELECT_PRODUCT_BY_CATEGORY = "select * from product where idcategory = ?";
+    private static final String SEARCH_BY_NAME = "SELECT * FROM product WHERE title like ?";
 
     private static final String SELECT_ALL_USER_PAGGING_FILLTER = "select SQL_CALC_FOUND_ROWS * from products where name like ? and id = ? limit ?, ?;";
     private static final String SELECT_ALL_USER_PAGGING_FILLTER_ALL =  "select SQL_CALC_FOUND_ROWS * from products where title like ? limit ?, ?;";
@@ -88,6 +90,31 @@ public class ProductDAO implements IProductDAO{
             }
         }
         return listProduct;
+    }
+
+    @Override
+    public List<Product> searchByName(String keyword){
+        List<Product> productList = new ArrayList<>();
+        try(Connection connection = getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SEARCH_BY_NAME);){
+            preparedStatement.setString(1, "%"+keyword+"%");
+            System.out.println(preparedStatement);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String title = rs.getString("title");
+                String image = rs.getString("image");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                String description = rs.getString("description");
+                int idcategory = rs.getInt("idcategory");
+                productList.add(new Product(id, title, image, price, quantity, description, idcategory));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return productList;
     }
 
     @Override
@@ -207,6 +234,29 @@ public class ProductDAO implements IProductDAO{
             printSQLException(ex);
         }
         return false;
+    }
+
+    public List<Product> selectProductByCategory(int cid){
+        List<Product> productList = new ArrayList<>();
+        try(Connection connection = getConnection(); PreparedStatement preparedStatement = connection.prepareStatement(SELECT_PRODUCT_BY_CATEGORY);){
+            System.out.println(preparedStatement);
+            preparedStatement.setInt(1, cid);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            while (rs.next()){
+                int id = rs.getInt("id");
+                String title = rs.getString("title");
+                String image = rs.getString("image");
+                int price = rs.getInt("price");
+                int quantity = rs.getInt("quantity");
+                String description = rs.getString("description");
+                int idcategory = rs.getInt("idcategory");
+                productList.add(new Product(id, title, image, price, quantity, description, idcategory));
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return productList;
     }
 
     public void printSQLException(SQLException ex) {

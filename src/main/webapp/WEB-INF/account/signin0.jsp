@@ -6,6 +6,7 @@
 
 <head>
     <jsp:include page="/WEB-INF/layout/headerHtml0.jsp"></jsp:include>
+
 </head>
 
 <body class="">
@@ -85,8 +86,8 @@
                                     </a>
 
                                     <div class="mb-3">
-                                        <label for="email">Email</label>
-                                        <input id="email" name="email" type="email" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                                        <label for="email">Email or Username</label>
+                                        <input id="email" name="email" type="" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
                                     </div>
 
                                     <div class="mb-3">

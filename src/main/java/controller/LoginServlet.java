@@ -32,10 +32,11 @@ private AdminDAO adminDAO;
         String gmail = req.getParameter("email");
         String password = req.getParameter("password");
         List<User> accountList = userDAO.selectAllUser();
+        List<Admin> adminList = adminDAO.selectAllAdmin();
         boolean flag = true;
         for (User account : accountList){
-            if (gmail.equals(account.getEmail()) && password.equals(account.getPassword())){
-                resp.sendRedirect("/product");
+            if ((gmail.equals(account.getEmail()) && password.equals(account.getPassword())) || (gmail.equals(account.getUsername()) && password.equals(account.getPassword()))){
+                resp.sendRedirect("/client");
                 flag = false;
                 break;
             }
@@ -44,6 +45,13 @@ private AdminDAO adminDAO;
 //                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/WEB-INF/account/signin0.jsp");
 //                requestDispatcher.forward(req, resp);
 //            }
+        }
+        for (Admin admin : adminList) {
+            if (gmail.equals(admin.getUsername()) && password.equals(admin.getPassword())){
+                resp.sendRedirect("/product");
+                flag = false;
+                break;
+            }
         }
         if (flag) {
             req.setAttribute("message", "Wrong Email or Password!");

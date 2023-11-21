@@ -26,7 +26,7 @@
 
 
   <!-- Content Start -->
-  <div class="content">
+  <div style="background-color: white !important;" class="content">
     <!-- Navbar Start -->
     <jsp:include page="/WEB-INF/layout/header.jsp"></jsp:include>
     <!-- Navbar End -->
@@ -55,9 +55,9 @@
     <%--                <button type="submit" class="btn btn-primary"><span class="fa fa-search"></span>Search</button>--%>
     <%--            </form>--%>
     <%--        </div>--%>
-    <div class="bg-secondary text-center rounded p-4">
-      <div class="d-flex align-items-center justify-content-between mb-4">
-        <h6 class="mb-0">Categories</h6>
+    <div style="background-color: white !important;" class="bg-secondary text-center rounded p-4">
+      <div style="background-color: white !important;" class="d-flex align-items-center justify-content-between mb-4">
+        <h6 style="color: darkcyan !important;" class="mb-0">Categories</h6>
 
         <div style="float: left; justify-content: space-between;">
           <a href="/category?action=create" type="button" class="btn btn-success w-21;">Create</a>
@@ -67,9 +67,9 @@
         <table class="table text-start align-middle table-bordered table-hover mb-0">
           <thead>
           <tr class="text-white">
-            <th scope="col">ID</th>
-            <th scope="col" class="text-center">Name</th>
-            <th scope="col" colspan="2" class="text-center">Action</th>
+            <th style="color: darkcyan !important;" scope="col">ID</th>
+            <th style="color: darkcyan !important;" scope="col" class="text-center">Name</th>
+            <th style="color: darkcyan !important;" scope="col" colspan="2" class="text-center">Action</th>
           </tr>
           </thead>
           <tbody>

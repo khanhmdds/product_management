@@ -7,10 +7,18 @@
 <head>
     <title>Create Product</title>
     <jsp:include page="/WEB-INF/layout/headerHtml.jsp"></jsp:include>
+    <style>
+        input {
+            background-color: white !important;
+        }
+        textarea {
+            background-color: white !important;
+        }
+    </style>
 </head>
 
 <body>
-<div class="container-fluid position-relative d-flex p-0">
+<div style="background-color: white !important;" class="container-fluid position-relative d-flex p-0">
     <!-- Spinner Start -->
     <div id="spinner"
          class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -25,7 +33,7 @@
 
 
     <!-- Content Start -->
-    <div class="content">
+    <div style="background-color: white !important;" class="content">
         <!-- Navbar Start -->
         <jsp:include page="/WEB-INF/layout/header.jsp"></jsp:include>
         <!-- Navbar End -->
@@ -59,14 +67,14 @@
             </div>
         </c:if>
 
-        <div class="container-fluid pt-4 px-4">
-            <div class="bg-secondary text-center rounded p-4">
-                <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
-                    <div class="col-12">
-                        <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
+        <div style="background-color: white" class="container-fluid pt-4 px-4">
+            <div style="background-color: whitesmoke !important;" class="bg-secondary text-center rounded p-4">
+                <div style="background-color: whitesmoke !important;" class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+                    <div style="background-color: whitesmoke !important;" class="col-12">
+                        <div style="background-color: whitesmoke !important;" class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
                             <form method="post" action="/product?action=create">
                                 <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <h3 class="text-primary">Create products</h3>
+                                    <h3 style="color: darkcyan !important;" class="text-primary">Create products</h3>
                                 </div>
                                 <div class="form-floating mb-3">
                                     <input type="text" class="form-control" id="title" name="title"

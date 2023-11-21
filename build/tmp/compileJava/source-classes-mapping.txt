@@ -10,29 +10,37 @@ dao/AdminDAO.java
  dao.AdminDAO
 dao/UserDAO.java
  dao.UserDAO
-controller/RegisterServlet.java
- controller.RegisterServlet
-com/module_case_study/HelloServlet.java
- com.module_case_study.HelloServlet
-AppUtils/ValidateUtils.java
- AppUtils.ValidateUtils
-dao/IProductDAO.java
- dao.IProductDAO
 controller/LoginServlet.java
  controller.LoginServlet
+dao/CategoryDAO.java
+ dao.CategoryDAO
+com/module_case_study/HelloServlet.java
+ com.module_case_study.HelloServlet
+controller/RegisterServlet.java
+ controller.RegisterServlet
+controller/CategoryServlet.java
+ controller.CategoryServlet
 model/User.java
  model.User
 model/Admin.java
  model.Admin
-dao/ProductDAO.java
- dao.ProductDAO
+AppUtils/ValidateUtils.java
+ AppUtils.ValidateUtils
 model/Category.java
  model.Category
 model/Product.java
  model.Product
+model/Order.java
+ model.Order
+model/Item.java
+ model.Item
+dao/ProductDAO.java
+ dao.ProductDAO
+controller/ClientController.java
+ controller.ClientController
 controller/ProductsServlet.java
  controller.ProductsServlet
-dao/CategoryDAO.java
- dao.CategoryDAO
-controller/CategoryServlet.java
- controller.CategoryServlet
+dao/IProductDAO.java
+ dao.IProductDAO
+controller/CartServlet.java
+ controller.CartServlet

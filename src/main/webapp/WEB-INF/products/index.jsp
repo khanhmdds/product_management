@@ -8,10 +8,15 @@
 <head>
     <title>Index</title>
     <jsp:include page="/WEB-INF/layout/headerHtml.jsp"></jsp:include>
+    <style>
+        td {
+            color: black !important;
+        }
+    </style>
 </head>
 
 <body>
-<div class="container-fluid position-relative d-flex p-0">
+<div style="background-color: white !important;" class="container-fluid position-relative d-flex p-0">
     <!-- Spinner Start -->
     <div id="spinner"
          class="show bg-dark position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -26,17 +31,17 @@
 
 
     <!-- Content Start -->
-    <div class="content">
+    <div style="background-color: white !important;" class="content">
         <!-- Navbar Start -->
         <jsp:include page="/WEB-INF/layout/header.jsp"></jsp:include>
         <!-- Navbar End -->
 
         <!-- Recent Sales Start -->
 
-        <div class="col-sm-6">
+        <div style="background-color: white; width: 100%" class="col-sm-6">
             <form action="product" style="padding: 10px;">
                 <input style="padding: 7px; border-radius: 10px" placeholder="search" type="text" hint="search"
-                       value="${requestScope.q}" name="q"> Category:
+                       value="${requestScope.q}" name="q"> Category
                 <select name="category_id" id="">
                     <option value="-1" style="padding: 7px; border-radius: 10px">All</option>
 
@@ -52,12 +57,12 @@
                         </c:choose>
                     </c:forEach>
                 </select>
-                <button type="submit" class="btn btn-primary"><span class="fa fa-search"></span>Search</button>
+                <button style="background-color: orangered !important ;margin-right: 10px" type="submit" class="btn btn-primary"><span class="fa fa-search"></span>Search</button>
             </form>
         </div>
-        <div class="bg-secondary text-center rounded p-4">
+        <div style="background-color: white !important;" class="bg-secondary text-center rounded p-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h6 class="mb-0">Products</h6>
+                <h6 style="color: darkcyan" class="mb-0">Products</h6>
 
                 <div style="float: left; justify-content: space-between;">
                     <a href="/product?action=create" type="button" class="btn btn-success w-21;">Create</a>
@@ -67,13 +72,13 @@
                 <table class="table text-start align-middle table-bordered table-hover mb-0">
                     <thead>
                     <tr class="text-white">
-                        <th scope="col">Image</th>
-                        <th scope="col" class="text-center">Title</th>
-                        <th scope="col-4" class="text-center">Price</th>
-                        <th scope="col" class="text-center">Quanity</th>
-                        <th scope="col" class="text-center">Description</th>
-                        <th scope="col" class="text-center">Category</th>
-                        <th scope="col" colspan="2" class="text-center">Action</th>
+                        <th style="color: darkcyan" scope="col">Image</th>
+                        <th style="color: darkcyan" scope="col" class="text-center">Title</th>
+                        <th style="color: darkcyan" scope="col-4" class="text-center">Price</th>
+                        <th style="color: darkcyan" scope="col" class="text-center">Quanity</th>
+                        <th style="color: darkcyan" scope="col" class="text-center">Description</th>
+                        <th style="color: darkcyan" scope="col" class="text-center">Category</th>
+                        <th style="color: darkcyan" scope="col" colspan="2" class="text-center">Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -95,7 +100,7 @@
                         <tr>
                             <td>
                                 <img src="${product.getImage()}" alt="Images product"
-                                     style="width: 150px;height: 100px;"/>
+                                     style="width: 150px;height: 150px;"/>
                             </td>
                             <td>${product.getTitle()}</td>
                             <td><fmt:formatNumber
@@ -127,7 +132,7 @@
             </div>
         </div>
         <nav class=col-sm-12 style="display: flex; justify-content: center" aria-label="Page navigation example"
-             style="position: relative; left: 500px;">
+             style="background-color: white !important;position: relative; left: 500px;">
             <ul class="pagination">
                 <c:if test="${requestScope.currentPage != 1}">
                     <li class="page-item ">

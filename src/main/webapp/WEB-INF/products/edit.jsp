@@ -7,6 +7,14 @@
 <head>
     <title>Edit</title>
     <jsp:include page="/WEB-INF/layout/headerHtml.jsp"></jsp:include>
+    <style>
+        input {
+            background-color: white !important;
+        }
+        textarea {
+            background-color: white !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -60,14 +68,14 @@
 
         <!-- Recent Sales Start -->
 
-        <div class="container-fluid pt-4 px-4">
-            <div class="bg-secondary text-center rounded p-4">
-                <div class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
-                    <div class="col-12">
-                        <div class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
+        <div style="background-color: white" class="container-fluid pt-4 px-4">
+            <div style="background-color: whitesmoke !important;" class="bg-secondary text-center rounded p-4">
+                <div style="background-color: whitesmoke !important;" class="row h-100 align-items-center justify-content-center" style="min-height: 100vh;">
+                    <div style="background-color: whitesmoke !important;" class="col-12">
+                        <div style="background-color: whitesmoke !important;" class="bg-secondary rounded p-4 p-sm-5 my-4 mx-3">
                             <form method="post" action="/product?action=edit">
                                 <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <h3 class="text-primary">Edit products</h3>
+                                    <h3 style="color: darkcyan !important;" class="text-primary">Edit product</h3>
                                 </div>
                                 <div class="form-group row" style="display:none">
                                     <input class="form-control" id="id" name="id" type="text"

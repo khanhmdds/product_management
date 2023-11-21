@@ -39,13 +39,23 @@
                                     <div><h2 style="color: green;font-size: 20px; text-align: center">${success}</h2></div>
 <%--                                </c:if>--%>
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example1cg">Your Name</label>
-                                    <input type="text" name ="fullName" id="form3Example1cg" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example1cg">Username</label>
+                                    <input type="text" name ="username" id="form3Example1cg" class="form-control form-control-lg" />
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example3cg">Your Email</label>
-                                    <input type="gmail" name="gmail" id="form3Example3cg" class="form-control form-control-lg" />
+                                    <label class="form-label" for="form3Example3cg">Email</label>
+                                    <input type="text" name="email" id="form3Example3cg" class="form-control form-control-lg" />
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form3Example3cg">Phone Number</label>
+                                    <input type="text" name="phoneNumber" id="form3Example5cg" class="form-control form-control-lg" />
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form3Example3cg">Address</label>
+                                    <input type="text" name="address" id="form3Example6cg" class="form-control form-control-lg" />
                                 </div>
 
                                 <div class="form-outline mb-4">
@@ -54,12 +64,12 @@
                                 </div>
 
                                 <div class="form-outline mb-4">
-                                    <label class="form-label" for="form3Example4cdg">Repeat your password</label>
+                                    <label class="form-label" for="form3Example4cdg">Repeat Password</label>
                                     <input type="password" name="rePassword" id="form3Example4cdg" class="form-control form-control-lg" />
                                 </div>
 
                                 <div class="d-flex justify-content-center">
-                                    <button type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" value="Register">Register</button>
+                                    <button style="color: white !important;" type="submit" class="btn btn-success btn-block btn-lg gradient-custom-4 text-body" value="Register">Register</button>
                                 </div>
 
                                 <p class="text-center text-muted mt-5 mb-0">Have already an account? <a href="/login" class="fw-bold text-body"><u>Login here</u></a></p>

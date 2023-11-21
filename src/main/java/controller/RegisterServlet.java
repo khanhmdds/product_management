@@ -1,5 +1,6 @@
 package controller;
 
+import AppUtils.ValidateUtils;
 import dao.UserDAO;
 import model.Admin;
 import model.User;
@@ -69,26 +70,43 @@ public class RegisterServlet extends HttpServlet {
         //List<Account> accounts = accountDAO.selectAllAccount();
         String username = req.getParameter("username");
         String email = req.getParameter("email");
+        String phoneNumber = req.getParameter("phoneNumber");
+        String address = req.getParameter("address");
         String pass = req.getParameter("password");
         String rePassword = req.getParameter("rePassword");
 
         List<User> accountList = userDAO.selectAllUser();
 
         for (User account0 : accountList) {
-            if (username.isEmpty() || email.isEmpty() || pass.isEmpty()) {
+            if (username.isEmpty() || email.isEmpty() || pass.isEmpty() || phoneNumber.isEmpty() || address.isEmpty()) {
                 req.setAttribute("error", "Information cannot be empty");
                 requestDispatcher = req.getRequestDispatcher("/WEB-INF/account/register.jsp");
                 requestDispatcher.forward(req, resp);
                 break;
             }
-            else if (email.equals(account0.getEmail())) {
-                req.setAttribute("error", "Email already exist!");
+            else if (email.equals(account0.getEmail()) || username.equals(account0.getUsername())) {
+                req.setAttribute("error", "Email or Username already exist!");
                 requestDispatcher = req.getRequestDispatcher("/WEB-INF/account/register.jsp");
                 requestDispatcher.forward(req, resp);
                 break;
             }
+            else if (!ValidateUtils.isEmailValid(email)) {
+                req.setAttribute("error", "Email Invalid!");
+                requestDispatcher = req.getRequestDispatcher("/WEB-INF/account/register.jsp");
+                requestDispatcher.forward(req, resp);
+            }
+            else if (!ValidateUtils.isValidatePhoneNumber(phoneNumber)) {
+                req.setAttribute("error", "Phone Number Invalid!");
+                requestDispatcher = req.getRequestDispatcher("/WEB-INF/account/register.jsp");
+                requestDispatcher.forward(req, resp);
+            }
+            else if ((pass.length() < 6) || (pass.length() > 8)) {
+                req.setAttribute("error", "Password length must between 6 and 8!");
+                requestDispatcher = req.getRequestDispatcher("/WEB-INF/account/register.jsp");
+                requestDispatcher.forward(req, resp);
+            }
             else if (pass.equals(rePassword)) {
-                User account = new User(email, pass, username);
+                User account = new User(username, pass, email, phoneNumber, address);
                 try {
                     // Thực hiện đăng ký tài khoản
                     userDAO.registerUser(account);
